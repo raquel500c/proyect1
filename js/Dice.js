@@ -3,5 +3,7 @@ function Dice(faces){
 }
 
 Dice.prototype.roll = function(){
-  return Math.floor(Math.random() * this.faces)+1;
+  var random= Math.floor(Math.random() * this.faces)+1;
+  console.log("TIRO DADO : " + random);
+  return random;
 };

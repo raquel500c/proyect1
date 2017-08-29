@@ -13,9 +13,11 @@ function Board() {
 }
 
 Board.prototype._init = function() {
+
   for (i = 0; i < this.squares.length; i++) {
     this.squares[i] = '_';
   }
+  this.squares[0] = 'TOKEN';
   //this._setGooses();
 };
 
@@ -39,7 +41,12 @@ Board.prototype._init = function() {
 
 Board.prototype._renderToken = function(tokenNumber) {
   var index = tokenNumber;
-  this.squares[Token.prevPosition] = '_';
+  if (this.squares[token.prevPosition] == 0) {
+    this.squares[0] = 'SALIDA';
+  }else {
+      this.squares[token.prevPosition] = '_';
+  }
+
   this.squares[index] = 'TOKEN';
   console.table(this.squares);
 };

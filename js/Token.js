@@ -5,6 +5,9 @@ function Token() {
 
 Token.prototype.move = function(diceNumber) {
   this.prevPosition = this.position;
-  return this.position += diceNumber;
-
+  console.log('previa POSICION :' + this.prevPosition);
+  var newPosition= this.position += diceNumber;
+  console.log('NUEVA POSICION :' + newPosition);
+  this.position= newPosition;
+  return newPosition;
 };
