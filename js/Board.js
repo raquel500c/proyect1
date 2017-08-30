@@ -1,87 +1,34 @@
-function Board() {
-  // this.squares = ['salida', '1', '2', '3', '4', 'oca', 'puente', '7', '8', 'oca',
-  //   '10', '11', 'puente', '13', 'oca', '15', '16', '17', 'oca', 'posada',
-  //   '20', '21', '22', 'oca', '24', '25', '26', 'oca', 'dados', '29', '30',
-  //   'pozo', 'oca', '33', '34', '35', 'oca', '37', '38', '39',
-  //   '40', 'oca', 'laberinto', '43', '44', 'oca', '46', '47', '48', '49',
-  //   'oca', '51', '52', 'dados', 'oca', '55', 'prision', '57', 'muerte', 'oca',
-  //   '60', '61', '62', 'llegada'
-  // ];
-  this.squares = new Array(64);
+function Board(numSquares) {
+  this.squares = new Array(numSquares);
   this._init();
-
 }
 
 Board.prototype._init = function() {
-
   for (i = 0; i < this.squares.length; i++) {
     this.squares[i] = '_';
   }
-  this.squares[0] = 'TOKEN';
-  //this._setGooses();
+  this.squares[0] = 'SALIDA';
+// this._setGooses();
 };
+Board.prototype.initRender = function ($body) {
+  var $board = $('<div>');
+  $board.attr('id', 'board');
+  $board.addClass('board col-sm-12');
+  $body.append($board);
 
-// Board.prototype._setGooses = function() {
-// for (i=0;i<this.squares.length;i++){
-//   var oca=false;
-//   if (!oca){
-//     this.squares[i+5]='goose';
-//     oca=true;
-//   }else{
-//     this.squares[i+4]='goose';
-//     oca=false;
-//   }
-// }
-
-//this.squares.map(function(elem, i, a) {
-//(!oca) ? squares[i+5] : squares[i+4]='goose')
-
-//});
-
-
-Board.prototype._renderToken = function(tokenNumber) {
-  var index = tokenNumber;
-  if (this.squares[token.prevPosition] == 0) {
-    this.squares[0] = 'SALIDA';
-  }else {
-      this.squares[token.prevPosition] = '_';
-  }
-
-  this.squares[index] = 'TOKEN';
-  console.table(this.squares);
-};
-
-Board.prototype.evalSquares = function() {
-  switch (this.squares) {
-    case 'oca':
-      console.log('De Oca a Oca, y tiro porque me toca');
-      break;
-    case 'puente':
-
-      break;
-    case 'posada':
-
-      break;
-
-    case 'dados':
-
-      break;
-    case 'pozo':
-
-      break;
-    case 'laberinto':
-
-      break;
-    case 'prision':
-
-      break;
-    case 'muerte':
-
-      break;
-    case 'llegada':
-
-      break;
-    default:
-
+  for (i = 0; i < 64; i++) {
+    var $squares = $('<div>').text(i);
+    $squares.addClass('squares col-sm2');
+    $squares.attr('id', i);
+    $board.append($squares);
   }
 };
+
+// this.squares = ['salida', '1', '2', '3', '4', 'oca', 'puente', '7', '8', 'oca',
+//   '10', '11', 'puente', '13', 'oca', '15', '16', '17', 'oca', 'posada',
+//   '20', '21', '22', 'oca', '24', '25', '26', 'oca', 'dados', '29', '30',
+//   'pozo', 'oca', '33', '34', '35', 'oca', '37', '38', '39',
+//   '40', 'oca', 'laberinto', '43', '44', 'oca', '46', '47', '48', '49',
+//   'oca', '51', '52', 'dados', 'oca', '55', 'prision', '57', 'muerte', 'oca',
+//   '60', '61', '62', 'llegada'
+// ];

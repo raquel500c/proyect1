@@ -1,0 +1,52 @@
+.container-fluid{
+  text-align:center;
+  vertical-align: center;
+  padding-top: 20px;
+  font-size: 1.5em;
+}
+
+button #roll{
+  margin:50px;
+}
+
+#dice{
+  background-color: blue;
+  color:white;
+  height: 80px;
+  width: 80px;
+  margin:50 auto;
+  padding:20px 0;
+  float:right;
+  border-radius: 18px;
+}
+
+
+#board{
+  position:relative;
+  height: 400px;
+  border:2px solid black;
+  padding:10px;
+}
+
+.squares {
+  background-color: aquamarine;
+  height: 50px;
+  width: 50px;
+  border: 1px solid teal;
+  display: inline-block;
+  margin:3px;
+  border-radius: 15px;
+  color: teal;
+  padding: 5px;
+}
+
+#token{
+  position:absolute;
+  top:50px;
+  left:100px;
+  background-color: yellow;
+  height: 30px;
+  width: 30px;
+  border: 1px solid black;
+  border-radius: 15px;
+}

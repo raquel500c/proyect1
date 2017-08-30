@@ -1,22 +1,26 @@
-// ----- LOGICA -----------//
-var board = new Board();
+// ----- INSTANCIAS OBJETOS-----------//
+
+var board = new Board(64);
 var dice = new Dice(6);
-var token = new Token();
-
-
-// console.log("Position Inicio: " + token.position);
-//  var diceRoll = dice.roll();
-//  console.log("Tirada dado: " + diceRoll);
-//  var newPosition = token.move(dice.roll());
-//  console.log("Nueva posicion : " + newPosition);
-// board._renderToken(newPosition);
-// PROBAR EN CONSOLE NAVEGADOR ---> board._renderToken(token.move(dice.roll()));
+var token = new Token('rojo', board);
 console.log(board.squares);
+//para Mover ficha desde consola ---> board._renderToken(token.move(dice.roll()));
 
+// ------ HTML - CSS -------------//
 
-// ------ HTML -CSS -------------//
 $(document).ready(function() {
-  $("").on("click", function() {
+  var $container = $('.main');
+  dice.initRender($container);
+  board.initRender($container);
+  token.initRender($container);
 
+  $('#roll').on("click", function() {
+
+    var numDice = dice.roll();
+    //muestro resultado en dado
+    $('#dice').text(numDice);
+
+    //modifico posicion token
+    token.move(numDice);
   });
 });
