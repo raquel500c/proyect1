@@ -62,5 +62,5 @@ var goosemap = [
   '60',
   '61',
   '62',
-  'llegada'
+  'oca'
 ];

@@ -3,16 +3,15 @@ function Token(color, board, container) {
   this.position = 0;
   this.color = color;
   this.board = board;
-  console.log(this.board.squares[0]);
   this.element = $('<div>').addClass('token').addClass(color);
   container.append(this.element);
   this.setOnSquare(0);
 }
 
-Token.prototype.setOnSquare = function(n){
+Token.prototype.setOnSquare = function(n) {
   this.element.css({
-    'top': this.board.squares[n][0].offsetTop + 25 ,
-    'left':this.board.squares[n][0].offsetLeft + 25
+    'top': this.board.squares[n][0].offsetTop + 28,
+    'left': this.board.squares[n][0].offsetLeft + 28
   });
 };
 
@@ -35,30 +34,39 @@ Token.prototype.move = function(diceNumber) {
   this._evalSquares(this.position);
   console.log(this);
 };
-
-
+/*
+Token.prototype._findIndex = function(name) {
+  var nextIndex = this.board.map.indexOf(name, this.position + 1);
+  if (nextIndex == -1)
+    nextIndex = this.board.map.indexOf(name);
+};
+*/
 Token.prototype._actionOca = function() {
-  console.log('DE OCA A OCA Y TIRO PORQUE ME TOCA');
-  var saltoOca2 = this.board.squares.indexOf('oca', this.position);
+  var nextOca = this.board.map.indexOf('oca', this.position + 1);
+  alert('DE OCA A OCA Y TIRO PORQUE ME TOCA' + this.position + ' ' + nextOca);
   this.prevPosition = this.position;
-  this.position = this.board.squares[saltoOca2];
-
+  this.position = nextOca;
+  console.log(this.position);
 };
 
-// Token.prototype._actionPuente = function() {
-//   //  if this.position= this.board.squares.indexOf('puente');
-//   this.prevPosition = this.position;
-//   this.position = this.board.squares[indexPuente];
-//   console.log('DE PUENTE A PUENTE Y TIRO PORQUE ME LLEVA LA CORRIENTE');
-// };
+Token.prototype._actionPuente = function() {
+  console.log('DE PUENTE A PUENTE Y TIRO PORQUE ME LLEVA LA CORRIENTE');
+  this.prevPosition = this.position;
+  if (this.prevPosition == 6) {
+    this.position = 12;
+  } else {
+    this.position = 6;
+  }
+};
 
 Token.prototype._evalSquares = function() {
-  switch (this.board.squares[this.position]) {
+  this.setOnSquare(this.position);
+  switch (this.board.map[this.position]) {
     case 'oca':
       this._actionOca(this.position);
       break;
     case 'puente':
-      //this._actionPuente(this.position);
+      this._actionPuente(this.position);
       break;
     case 'posada':
       break;
@@ -78,4 +86,5 @@ Token.prototype._evalSquares = function() {
     default:
       return false;
   }
+
 };
