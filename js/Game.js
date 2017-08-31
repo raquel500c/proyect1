@@ -1,18 +1,20 @@
 // ----- INSTANCIAS OBJETOS-----------//
 
-var board = new Board(64);
-var dice = new Dice(6);
-var token = new Token('rojo', board);
-console.log(board.squares);
+
 //para Mover ficha desde consola ---> board._renderToken(token.move(dice.roll()));
 
 // ------ HTML - CSS -------------//
 
 $(document).ready(function() {
-  var $container = $('.main');
-  dice.initRender($container);
-  board.initRender($container);
-  token.initRender($container);
+  var container = $('.main');
+
+  var board = new Board(goosemap, container);
+
+  var dice = new Dice(6);
+  var token = new Token('rojo', board, container);
+  console.log(board.squares);
+
+  dice.initRender(container);
 
   $('#roll').on("click", function() {
 

@@ -1,8 +1,8 @@
-function Dice(faces){
+function Dice(faces) {
   this.faces = faces;
 }
 
-Dice.prototype.initRender = function ($body) {
+Dice.prototype.initRender = function($body) {
   var $dice = $('<div>').text(this.faces);
   $dice.addClass('col-sm-3');
   $dice.attr('id', 'dice');
@@ -14,7 +14,7 @@ Dice.prototype.initRender = function ($body) {
   $body.append($buttonRoll);
 };
 
-Dice.prototype.roll = function(){
-  var random= Math.floor(Math.random() * this.faces)+1;
+Dice.prototype.roll = function() {
+  var random = Math.floor(Math.random() * this.faces) + 1;
   return random;
 };

@@ -23,7 +23,6 @@ button #roll{
 
 #board{
   position:relative;
-  height: 400px;
   border:2px solid black;
   padding:10px;
 }
@@ -38,12 +37,18 @@ button #roll{
   border-radius: 15px;
   color: teal;
   padding: 5px;
+  &.oca{
+    background: gray;
+    color:white;
+  }
+  &.salida{
+    background:red;
+    color:white;
+  }
 }
 
-#token{
+.token{
   position:absolute;
-  top:50px;
-  left:100px;
   background-color: yellow;
   height: 30px;
   width: 30px;

@@ -1,80 +1,81 @@
-function Token(color, board) {
+function Token(color, board, container) {
   this.prevPosition = 0;
   this.position = 0;
   this.color = color;
   this.board = board;
+  console.log(this.board.squares[0]);
+  this.element = $('<div>').addClass('token').addClass(color);
+  container.append(this.element);
+  this.setOnSquare(0);
 }
 
-Token.prototype.initRender = function ($body) {
-  var $token = $('<div>');
-  $token.attr('id', 'token');
-  $token.addClass('token col-sm-2');
-  $body.append($token);
-  this.render();
+Token.prototype.setOnSquare = function(n){
+  this.element.css({
+    'top': this.board.squares[n][0].offsetTop + 25 ,
+    'left':this.board.squares[n][0].offsetLeft + 25
+  });
 };
 
-Token.prototype.render = function() {
-  //cambia color casilla ocupada del board
-  $('#' + this.prevPosition).css({'background-color': 'aquamarine'});
-  $('#' + this.position).css({'background-color': 'red'});
-};
 
 Token.prototype.move = function(diceNumber) {
   this.prevPosition = this.position;
-  this.position += diceNumber;
   console.log('TIRADA DADO :' + diceNumber);
-  console.log(token);
-  token._evalSquares(this.position);
-  this.render();
+  if (this.position + diceNumber == 63) {
+    this.position = 63;
+    this.setOnSquare(this.position);
+    alert('YOU ARE THE WINNER!!');
+    return;
+  } else if (this.position + diceNumber > 63) {
+    this.position += diceNumber;
+    this.position = 63 - this.position % 63;
+  } else {
+    this.position += diceNumber;
+  }
+  this.setOnSquare(this.position);
+  this._evalSquares(this.position);
+  console.log(this);
 };
 
+
+Token.prototype._actionOca = function() {
+  console.log('DE OCA A OCA Y TIRO PORQUE ME TOCA');
+  var saltoOca2 = this.board.squares.indexOf('oca', this.position);
+  this.prevPosition = this.position;
+  this.position = this.board.squares[saltoOca2];
+
+};
+
+// Token.prototype._actionPuente = function() {
+//   //  if this.position= this.board.squares.indexOf('puente');
+//   this.prevPosition = this.position;
+//   this.position = this.board.squares[indexPuente];
+//   console.log('DE PUENTE A PUENTE Y TIRO PORQUE ME LLEVA LA CORRIENTE');
+// };
+
 Token.prototype._evalSquares = function() {
-  var specialsSquares = ['salida', '1', '2', '3', '4', 'oca', 'puente', '7', '8', 'oca',
-      '10', '11', 'puente', '13', 'oca', '15', '16', '17', 'oca', 'posada',
-      '20', '21', '22', 'oca', '24', '25', '26', 'oca', 'dados', '29', '30',
-      'pozo', 'oca', '33', '34', '35', 'oca', '37', '38', '39',
-      '40', 'oca', 'laberinto', '43', '44', 'oca', '46', '47', '48', '49',
-      'oca', '51', '52', 'dados', 'oca', '55', 'prision', '57', 'muerte', 'oca',
-      '60', '61', '62', 'llegada'
-    ];
-
-  console.log(specialsSquares);
-  switch (specialsSquares[this.position]) {
+  switch (this.board.squares[this.position]) {
     case 'oca':
-      alert('De Oca a Oca, y tiro porque me toca');
-      for (i=specialsSquares[this.position+1];i<this.position.length;i++){
-        var indexOca= specialsSquares.indexOf('oca');
-        this.prevPosition=this.position;
-        this.position=specialsSquares[indexOca];
-      }
-      return dice.roll;
+      this._actionOca(this.position);
+      break;
     case 'puente':
-
+      //this._actionPuente(this.position);
       break;
     case 'posada':
-
       break;
-
     case 'dados':
-
       break;
     case 'kata':
-
       break;
     case 'laberinto':
-
       break;
     case 'prision':
-
       break;
     case 'muerte':
-
+      this.positon = 1;
       break;
     case 'llegada':
-
       break;
     default:
       return false;
-
   }
 };
