@@ -62,5 +62,5 @@ var travelmap = [
   '60',
   '61',
   '62',
-  'beer 63'
+  'llegada beer 63'
 ];

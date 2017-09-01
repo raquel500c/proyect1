@@ -8,14 +8,14 @@ function Token(color, board, container) {
   this.setOnSquare(0);
 }
 
-Token.prototype.message = function (message) {
-  $('.player-'+this.color).append($('<p>').html(message));
+Token.prototype.message = function(message) {
+  $('.player-' + this.color).append($('<p>').html(message));
 };
 
 Token.prototype.setOnSquare = function(n) {
   this.element.css({
-    'top': this.board.squares[n][0].offsetTop + 128,
-    'left': this.board.squares[n][0].offsetLeft + 450
+    'top': this.board.squares[n][0].offsetTop + 138,
+    'left': this.board.squares[n][0].offsetLeft + 492
   });
 };
 

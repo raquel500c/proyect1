@@ -58,21 +58,25 @@ col-sm-3 {
   border-radius: 15px;
   color: teal;
   padding: 0 5px;
-  font-size: 14px;
+  font-size: 0.6em;
+  &.salida {
+    width: 250px;
+    background: teal;
+    color: white;
+  }
 
   &.beer {
     background-image: url('../img/beer.png');
     background-size: cover;
   }
 
-  &.beer.63 {
+  &.llegada {
     width: 250px;
     background: teal;
     color: white;
   }
 
   &.kata {
-    background: teal;
     background-image: url('../img/kata.png');
     background-size: cover;
   }
