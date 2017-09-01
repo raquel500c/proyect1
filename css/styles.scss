@@ -1,62 +1,100 @@
-.container-fluid{
-  text-align:center;
+.container-fluid {
+  text-align: center;
   vertical-align: center;
   padding-top: 20px;
   font-size: 1.5em;
 }
 
-button #roll{
-  margin:50px;
+button.roll {
+  margin: 50px;
 }
 
-#dice{
+.dice {
   background-color: blue;
-  color:white;
+  color: white;
   height: 80px;
   width: 80px;
-  margin:50 auto;
-  padding:20px 0;
-  float:right;
+  margin: 50 auto;
+  padding: 20px 0;
+  float: right;
   border-radius: 18px;
 }
 
-
-#board{
-  position:relative;
-  border:2px solid black;
-  padding:10px;
+.board {
+  //background-color: aquamarine;
+  position: relative;
+  border: 2px solid black;
+  padding: 10px;
 }
 
 .squares {
-  background-color: aquamarine;
+  //background-color: aquamarine;
   height: 50px;
   width: 50px;
   border: 1px solid teal;
   display: inline-block;
-  margin:3px;
+  margin: 3px;
   border-radius: 15px;
   color: teal;
-  padding: 5px;
-  &.oca{
-    background: gray;
-    color:white;
+  padding: 0 5px;
+  font-size: 0.5em;
+
+  &.beer {
+    background: teal;
+    background-image: url('../img/beer.png');
+    background-size: cover;
+    //color: white;
   }
-  &.salida{
-    background:red;
-    color:white;
+
+  &.salida {
+    width: 250px;
+    background: teal;
+    color: white;
   }
-  &.oca-fin{
-    background:black;
-    color:white;
+
+  &.oca63 {
+    width: 250px;
+    background: teal;
+    color: white;
   }
-  &.puente{
-    background:SADDLEBROWN;
-    color:white;
+
+  &.proyector {
+    //background: SADDLEBROWN;
+    background-image: url('../img/proyector.png');
+    background-size: cover;
+    //color: white;
+  }
+
+  &.libros {
+    //background: gray;
+    background-image: url('../img/libros.png');
+    background-size: cover;
+    //color: white;
+  }
+  &.wc {
+    //background: gray;
+    background-image: url('../img/wc.png');
+    background-size: cover;
+    //color: white;
+  }
+
+  &.perroMalo {
+    background: pink;
+    background-image: url('../img/perro.png');
+    background-size: cover;
+    color: white;
+  }
+
+  &.marc {
+    background: black;
+    background-image: url('../img/marc.png');
+    background-size: cover;
+    color: white;
   }
 }
 
-.token{
-  position:absolute;
+.token {
+  position: absolute;
   background-color: yellow;
   height: 30px;
   width: 30px;

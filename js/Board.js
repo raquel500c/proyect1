@@ -1,7 +1,6 @@
 function Board(goosemap, container) {
   this.map = goosemap;
   var board = $('<div>');
-  board.attr('id', 'board');
   board.addClass('board');
   container.append(board);
   this.squares = [];

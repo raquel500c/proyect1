@@ -15,7 +15,6 @@ Token.prototype.setOnSquare = function(n) {
   });
 };
 
-
 Token.prototype.move = function(diceNumber) {
   this.prevPosition = this.position;
   console.log('TIRADA DADO :' + diceNumber);
@@ -34,57 +33,55 @@ Token.prototype.move = function(diceNumber) {
   this._evalSquares(this.position);
   console.log(this);
 };
-/*
-Token.prototype._findIndex = function(name) {
-  var nextIndex = this.board.map.indexOf(name, this.position + 1);
-  if (nextIndex == -1)
-    nextIndex = this.board.map.indexOf(name);
-};
-*/
-Token.prototype._actionOca = function() {
-  var nextOca = this.board.map.indexOf('oca', this.position + 1);
-  alert('DE OCA A OCA Y TIRO PORQUE ME TOCA' + this.position + ' ' + nextOca);
-  this.prevPosition = this.position;
-  this.position = nextOca;
-  console.log(this.position);
-};
-
-Token.prototype._actionPuente = function() {
-  console.log('DE PUENTE A PUENTE Y TIRO PORQUE ME LLEVA LA CORRIENTE');
-  this.prevPosition = this.position;
-  if (this.prevPosition == 6) {
-    this.position = 12;
-  } else {
-    this.position = 6;
-  }
-};
 
 Token.prototype._evalSquares = function() {
-  this.setOnSquare(this.position);
   switch (this.board.map[this.position]) {
-    case 'oca':
-      this._actionOca(this.position);
+    case 'beer':
+      this._toNextIndex(this.board.map[this.position]);
+      alert('DE IRONBEER A IRONBEER Y TIRO PORQUE SÍ.. de ' + this.prevPosition + ' a ' + this.position);
       break;
-    case 'puente':
-      this._actionPuente(this.position);
+    case 'proyector':
+      this._toAnyIndex(this.board.map[this.position]);
+      alert('DE PROYECTOR A PROYECTOR Y TIRO PORQUE ME VIENE MEJOR .. de ' + this.prevPosition + ' a ' + this.position);
       break;
     case 'posada':
       break;
-    case 'dados':
+    case 'perroMalo':
+      this._toAnyIndex(this.board.map[this.position]);
+      alert('DE PERROMALO A PERROMALO Y TIRO PORQUE ME HA AYUDADO .. de ' + this.prevPosition + ' a ' + this.position);
       break;
     case 'kata':
       break;
-    case 'laberinto':
+    case 'wc':
+      if (this.prevPosition == 42) this.position = 30;
       break;
     case 'prision':
       break;
-    case 'muerte':
-      this.positon = 1;
-      break;
-    case 'llegada':
+    case 'marc':
+      this.position = 0;
+      alert('MARC TE BORRA EL CÓDIGO.... VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a ' + this.position);
       break;
     default:
       return false;
   }
+  this.setOnSquare(this.position);
+};
 
+Token.prototype._toNextIndex = function(name) {
+  var nextIndex = this.board.map.indexOf(name, this.position + 1);
+  if (nextIndex == -1)
+    return;
+  this.prevPosition = this.position;
+  this.position = nextIndex;
+  console.log(this.position);
+};
+
+Token.prototype._toAnyIndex = function(name) {
+  var anyIndex = this.board.map.indexOf(name, this.position + 1);
+  if (anyIndex == -1)
+    anyIndex = this.board.map.indexOf(name);
+  this.prevPosition = this.position;
+  this.position = anyIndex;
+  console.log(this.position);
+  return;
 };
