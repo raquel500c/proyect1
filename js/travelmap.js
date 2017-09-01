@@ -1,4 +1,4 @@
-var goosemap = [
+var travelmap = [
   'salida',
   '1',
   '2',
@@ -62,5 +62,5 @@ var goosemap = [
   '60',
   '61',
   '62',
-  'oca63'
+  'beer 63'
 ];

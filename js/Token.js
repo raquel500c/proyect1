@@ -8,20 +8,24 @@ function Token(color, board, container) {
   this.setOnSquare(0);
 }
 
+Token.prototype.message = function (message) {
+  $('.player-'+this.color).append($('<p>').html(message));
+};
+
 Token.prototype.setOnSquare = function(n) {
   this.element.css({
-    'top': this.board.squares[n][0].offsetTop + 28,
-    'left': this.board.squares[n][0].offsetLeft + 28
+    'top': this.board.squares[n][0].offsetTop + 128,
+    'left': this.board.squares[n][0].offsetLeft + 450
   });
 };
 
 Token.prototype.move = function(diceNumber) {
   this.prevPosition = this.position;
-  console.log('TIRADA DADO :' + diceNumber);
+  this.message('TIRADA DADO : ' + diceNumber);
   if (this.position + diceNumber == 63) {
     this.position = 63;
     this.setOnSquare(this.position);
-    alert('YOU ARE THE WINNER!!');
+    this.message('YOU ARE THE WINNER!!');
     return;
   } else if (this.position + diceNumber > 63) {
     this.position += diceNumber;
@@ -31,31 +35,28 @@ Token.prototype.move = function(diceNumber) {
   }
   this.setOnSquare(this.position);
   this._evalSquares(this.position);
-  console.log(this);
 };
 
 Token.prototype._evalSquares = function() {
   switch (this.board.map[this.position]) {
     case 'beer':
       this._toNextIndex(this.board.map[this.position]);
-      alert('DE IRONBEER A IRONBEER Y TIRO PORQUE SÍ.. de ' + this.prevPosition + ' a ' + this.position);
+      this.message('IRONBEER A IRONBEER Y TIRO PORQUE SÍ.. de ' + this.prevPosition + ' a ' + this.position);
       break;
     case 'kata':
       this._toAnyIndex(this.board.map[this.position]);
-      alert('DE KATA A KATA Y TIRO PORQUE ME DA LA GANA .. de ' + this.prevPosition + ' a ' + this.position);
+      this.message('KATA A KATA Y TIRO PORQUE ME DA LA GANA .. de ' + this.prevPosition + ' a ' + this.position);
       break;
     case 'perroMalo':
       this._toAnyIndex(this.board.map[this.position]);
-      alert('DE PERROMALO A PERROMALO Y TIRO PORQUE ME HA AYUDADO .. de ' + this.prevPosition + ' a ' + this.position);
+      this.message('PERROMALO A PERROMALO Y TIRO PORQUE ME HA AYUDADO .. de ' + this.prevPosition + ' a ' + this.position);
       break;
-    case 'wc': //debe retroceder a casa del lector(libros)
-      //if (this.prevPosition == 42) this.position = 30;
+    case 'wc':
       this._toAnyIndex('libros');
       break;
     case 'marc':
       this.position = 0;
-      alert('MARC TE BORRA EL CÓDIGO.... VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a ' + this.position);
-      console.log('MARC TE BORRA EL CÓDIGO.... VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a ' + this.position);
+      this.message('MARC TE BORRA EL CÓDIGO.... ¡¡VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a ' + this.position);
       break;
     default:
       return false;
@@ -69,7 +70,6 @@ Token.prototype._toNextIndex = function(name) {
     return;
   this.prevPosition = this.position;
   this.position = nextIndex;
-  console.log(this.position);
 };
 
 Token.prototype._toAnyIndex = function(name) {
@@ -78,6 +78,5 @@ Token.prototype._toAnyIndex = function(name) {
     anyIndex = this.board.map.indexOf(name);
   this.prevPosition = this.position;
   this.position = anyIndex;
-  console.log(this.position);
   return;
 };

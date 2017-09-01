@@ -21,14 +21,35 @@ button.roll {
 }
 
 .board {
-  //background-color: aquamarine;
   position: relative;
   border: 2px solid black;
   padding: 10px;
 }
 
+.row {
+  padding: 20px;
+}
+
+col-sm-3 {
+  margin: 0 auto;
+}
+
+.player {
+  height: 400px;
+  font-size: 16px;
+}
+
+.player-yellow {
+  background-color: aquamarine;
+  border: 5px dashed pink;
+}
+
+.player-pink {
+  background-color: pink;
+  border: 5px dashed aquamarine;
+}
+
 .squares {
-  //background-color: aquamarine;
   height: 50px;
   width: 50px;
   border: 1px solid teal;
@@ -37,30 +58,23 @@ button.roll {
   border-radius: 15px;
   color: teal;
   padding: 0 5px;
-  font-size: 0.5em;
-
-  &.salida {
-    width: 250px;
-    background: teal;
-    color: white;
-  }
+  font-size: 14px;
 
   &.beer {
     background-image: url('../img/beer.png');
     background-size: cover;
   }
 
+  &.beer.63 {
+    width: 250px;
+    background: teal;
+    color: white;
+  }
+
   &.kata {
     background: teal;
     background-image: url('../img/kata.png');
     background-size: cover;
-  }
-
-
-  &.oca63 {
-    width: 250px;
-    background: teal;
-    color: white;
   }
 
   &.libros {
