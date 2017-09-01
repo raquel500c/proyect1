@@ -40,26 +40,22 @@ Token.prototype._evalSquares = function() {
       this._toNextIndex(this.board.map[this.position]);
       alert('DE IRONBEER A IRONBEER Y TIRO PORQUE SÍ.. de ' + this.prevPosition + ' a ' + this.position);
       break;
-    case 'proyector':
+    case 'kata':
       this._toAnyIndex(this.board.map[this.position]);
-      alert('DE PROYECTOR A PROYECTOR Y TIRO PORQUE ME VIENE MEJOR .. de ' + this.prevPosition + ' a ' + this.position);
-      break;
-    case 'posada':
+      alert('DE KATA A KATA Y TIRO PORQUE ME DA LA GANA .. de ' + this.prevPosition + ' a ' + this.position);
       break;
     case 'perroMalo':
       this._toAnyIndex(this.board.map[this.position]);
       alert('DE PERROMALO A PERROMALO Y TIRO PORQUE ME HA AYUDADO .. de ' + this.prevPosition + ' a ' + this.position);
       break;
-    case 'kata':
-      break;
-    case 'wc':
-      if (this.prevPosition == 42) this.position = 30;
-      break;
-    case 'prision':
+    case 'wc': //debe retroceder a casa del lector(libros)
+      //if (this.prevPosition == 42) this.position = 30;
+      this._toAnyIndex('libros');
       break;
     case 'marc':
       this.position = 0;
       alert('MARC TE BORRA EL CÓDIGO.... VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a ' + this.position);
+      console.log('MARC TE BORRA EL CÓDIGO.... VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a ' + this.position);
       break;
     default:
       return false;
