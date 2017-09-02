@@ -15,48 +15,60 @@ Token.prototype.message = function(message) {
 Token.prototype.setOnSquare = function(n) {
   this.element.css({
     'top': this.board.squares[n][0].offsetTop + 138,
-    'left': this.board.squares[n][0].offsetLeft + 492
+    'left': this.board.squares[n][0].offsetLeft + 395
   });
 };
 
 Token.prototype.move = function(diceNumber) {
   this.prevPosition = this.position;
-  this.message('TIRADA DADO : ' + diceNumber);
+  console.log('TIRADA DADO : ' + diceNumber);
+    this.setOnSquare(this.position);
   if (this.position + diceNumber == 63) {
     this.position = 63;
     this.setOnSquare(this.position);
     this.message('YOU ARE THE WINNER!!');
+    this.position=0;
+
     return;
   } else if (this.position + diceNumber > 63) {
     this.position += diceNumber;
     this.position = 63 - this.position % 63;
   } else {
     this.position += diceNumber;
+
   }
-  this.setOnSquare(this.position);
   this._evalSquares(this.position);
+  this.setOnSquare(this.position);
 };
 
 Token.prototype._evalSquares = function() {
+    this.setOnSquare(this.position);
   switch (this.board.map[this.position]) {
     case 'beer':
-      this._toNextIndex(this.board.map[this.position]);
+    this._toNextIndex(this.board.map[this.position]);
       this.message('IRONBEER A IRONBEER Y TIRO PORQUE SÍ.. de ' + this.prevPosition + ' a ' + this.position);
+
       break;
     case 'kata':
-      this._toAnyIndex(this.board.map[this.position]);
+    this._toAnyIndex(this.board.map[this.position]);
       this.message('KATA A KATA Y TIRO PORQUE ME DA LA GANA .. de ' + this.prevPosition + ' a ' + this.position);
+
       break;
     case 'perroMalo':
       this._toAnyIndex(this.board.map[this.position]);
       this.message('PERROMALO A PERROMALO Y TIRO PORQUE ME HA AYUDADO .. de ' + this.prevPosition + ' a ' + this.position);
+
       break;
     case 'wc':
-      this._toAnyIndex('libros');
+    this._toAnyIndex('libros');
+      this.message('BAÑO ATASCADO!!.... VE A LA CASA DEL LECTOR .. de ' + this.prevPosition + ' a ' + this.position);
+
       break;
     case 'marc':
-      this.position = 0;
-      this.message('MARC TE BORRA EL CÓDIGO.... ¡¡VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a ' + this.position);
+    this.prevPosition=this.position;
+    this.position = 0;
+      this.message('MARC TE BORRA EL CÓDIGO.... ¡¡VUELVE A EMPEZAR!!.. de ' + this.prevPosition + ' a SALIDA' );
+
       break;
     default:
       return false;

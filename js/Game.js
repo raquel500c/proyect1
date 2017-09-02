@@ -7,7 +7,7 @@ $(document).ready(function() {
   dice.initRender(container);
 
   $('.roll').on("click", function() {
-    var numDice = dice.roll();
+    var numDice = dice.roll();  
     $('.dice').text(numDice);
     token.move(numDice);
   });
