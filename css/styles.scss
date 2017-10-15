@@ -6,7 +6,7 @@
 }
 
 button.roll {
-  margin: 50px;
+  margin-top: 50px;
 }
 
 .dice {
@@ -14,9 +14,10 @@ button.roll {
   color: white;
   height: 80px;
   width: 80px;
-  margin: 50 auto;
+  margin: 20px auto;
   padding: 20px 0;
-  float: right;
+  //float: right;
+  text-align: center;
   border-radius: 18px;
 }
 
@@ -35,10 +36,12 @@ col-sm-3 {
 }
 
 .player {
-  height: 400px;
+  height: 500px;
   font-size: 16px;
 }
-
+.player p{
+  font-size: 10px;
+}
 .player-yellow {
   background-color: aquamarine;
   border: 5px dashed pink;
